@@ -1,21 +1,33 @@
 'use client'
 
-import { useState, useCallback } from "react"
+import { useState, useCallback, useEffect } from "react"
 import {
     useForm,
     FieldValues,
     SubmitHandler,
 } from 'react-hook-form'
-import Input from "@/app/components/ui/input"
-import Button from "@/app/components/ui/button"
+import axios from "axios"
+import { signIn, useSession } from 'next-auth/react'
+import { useRouter } from "next/navigation"
+import { toast } from 'react-hot-toast'
+import Input from "@components/ui/input"
+import Button from "@components/ui/button"
 import AuthSocialButton from "./authSocialButton"
 import { BsGithub, BsGoogle } from 'react-icons/bs'
 
 type Variant = 'login' | 'register'
 
 export default function AuthForm() {
+    const session = useSession()
+    const router = useRouter()
     const [variant, setVariant] = useState<Variant>('login')
     const [isLoading, setIsLoading] = useState(false)
+
+    useEffect(() => {
+        if (session.status === 'authenticated') {
+            router.push('/users')
+        }
+    }, [session.status])
 
     const toggleVariant = useCallback(() => {
         setVariant(variant === 'login' ? 'register' : 'login')
@@ -38,30 +50,56 @@ export default function AuthForm() {
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true)
 
-        if (variant === 'login') {
-            // nextauth
+        if (variant === 'register') {
+            axios.post('/api/register', data)
+                .then(() => signIn('credentials', data))
+                .catch(() => toast.error('Something went wrong!'))
+            setIsLoading(false)
         }
 
-        if (variant === 'register') {
-            // axios
+        if (variant === 'login') {
+            signIn('credentials', {
+                ...data,
+                redirect: false
+            }).then((callback) => {
+                if (callback?.error) {
+                    toast.error('Invalid credentials')
+                    return
+                }
+                toast.success('Logged in!')
+            })
+            setIsLoading(false)
         }
     }
 
     const socialSignIn = (action: string) => {
         setIsLoading(true)
 
-        //nextauth social
+        signIn(action, { redirect: false })
+            .then((callback) => {
+                if (callback?.error) {
+                    toast.error('Invalid credentials', {
+                        className: 'dark:bg-gray-900'
+                    })
+                    return
+                }
+                toast.success('Logged in')
+                router.push('/users')
+            })
+        setIsLoading(false)
     }
 
     return (
         <div className="
             bg-white
             rounded-md
-            p-8
+            py-8
+            px-6
             shadow
             sm:mx-auto
             sm:w-full
             sm:max-w-md
+            dark:bg-gray-950
         ">
             <form
                 onSubmit={handleSubmit(onSubmit)}
@@ -123,8 +161,9 @@ export default function AuthForm() {
                             bg-white
                             px-2
                             text-gray-400
+                            dark:bg-gray-950
                         ">
-                            Or continue with
+                            O continua con
                         </span>
                     </div>
                 </div>
@@ -151,7 +190,7 @@ export default function AuthForm() {
                 text-sm
                 mt-6
                 px-2
-                text-gray-500
+                text-gray-400
             ">
                 <div>
                     {variant === 'login' ? 'Eres nuevo?' : 'Ya tienes una cuenta?'}

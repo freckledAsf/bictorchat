@@ -30,6 +30,9 @@ export default function AuthSocialButton({
                 ring-gray-300
                 hover:bg-gray-50
                 focus:outline-offset-0
+                dark:bg-gray-800
+                dark:ring-gray-700
+                dark:hover:bg-gray-900
             "
         >
             <Icon />

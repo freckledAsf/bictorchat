@@ -36,6 +36,7 @@ export default function Input({
                     font-medium
                     leading-6
                     text-gray-950
+                    dark:text-gray-200
                 "
             >
                 {label}
@@ -46,7 +47,7 @@ export default function Input({
                 autoFocus={autofocus}
                 autoComplete={id}
                 disabled={disabled}
-                {...register(id)}
+                {...register(id, { required: true })}
                 className={clsx(`
                         mt-2
                         form-input
@@ -63,6 +64,10 @@ export default function Input({
                         placeholder:text-gray-900
                         focus:ring-2
                         focus:ring-sky-600
+                        dark:text-gray-200
+                        dark:bg-gray-800
+                        dark:ring-gray-700
+                        dark:hover:bg-gray-900
                     `,
                     errors[id] && 'focus:ring-rose-500',
                     disabled && 'opacity-50 cursor-default',

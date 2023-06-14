@@ -10,7 +10,7 @@ export default function Home() {
         items-center
         justify-center
         bg-gray-200
-        dark:bg-gray-950
+        dark:bg-gray-900
         gap-6
       '
     >
@@ -18,10 +18,9 @@ export default function Home() {
         <Image
           width={48}
           height={48}
-          src='/logo.png'
+          src='/logo.svg'
           alt='logo'
           priority
-          unoptimized
           className='mx-auto'
         />
         <h2 className='
@@ -31,6 +30,7 @@ export default function Home() {
           font-bold
           tracking-tight
           text-gray-950
+          dark:text-gray-200
         '>
           WE ARE LIVE BITCHEEES!!!
         </h2>

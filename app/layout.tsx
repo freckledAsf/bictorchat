@@ -1,5 +1,8 @@
-import './globals.css'
+import AuthContext from './context/authContext'
+import ToasterContext from './context/toasterContext'
+
 import { Inter } from 'next/font/google'
+import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -14,12 +17,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html 
+    <html
       lang="en"
       className='h-screen'
     >
       <body className={`h-full ${inter.className}`}>
-        {children}
+        <AuthContext>
+          <ToasterContext />
+          {children}
+        </AuthContext>
       </body>
     </html>
   )
