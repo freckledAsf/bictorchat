@@ -1,9 +1,9 @@
 'use client'
 
-import { User } from "@prisma/client"
 import axios from "axios"
 import { useRouter } from "next/navigation"
 import { useCallback, useState } from "react"
+import { User } from "@prisma/client"
 import Avatar from "@components/avatar"
 
 interface Props {
@@ -24,7 +24,7 @@ export default function UserBox({
             router.push(`/conversations/${data.data.id}`)
         })
         setIsLoading(false)
-    }, [axios, router, user])
+    }, [router, user])
 
     return (
         <div
@@ -35,12 +35,14 @@ export default function UserBox({
                 flex
                 items-center
                 space-x-3
-                bg-white
+                bg-gray-200
                 p-3
-                hover:bg-neutral-100
                 rounded-lg
                 transition
                 cursor-pointer
+                hover:bg-gray-300
+                dark:bg-gray-800
+                dark:hover:bg-gray-950
             "
         >
             <Avatar user={user} />
@@ -59,6 +61,7 @@ export default function UserBox({
                             text-sm
                             font-medium
                             text-gray-900
+                            dark:text-gray-300
                         ">
                             {user.name}
                         </p>

@@ -35,11 +35,15 @@ export default function MobileItem({
                 w-full
                 justify-center
                 p-4
+                border-x
                 text-gray-500
                 hover:text-black
                 hover:bg-gray-100
+                dark:border-gray-700
+                dark:hover:text-gray-400
+                dark:hover:bg-gray-950
             `,
-                active && 'bg-gray-100 text-black'
+                active && 'bg-gray-100 text-black dark:bg-gray-950'
             )}
         >
             <Icon className="h-6 w-6" />

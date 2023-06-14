@@ -31,6 +31,8 @@ export default function DesktopSidebar({
             lg:flex
             lg:flex-col
             lg:justify-between
+            dark:lg:bg-gray-900
+            dark:lg:border-gray-700
         ">
             <nav className="
                 mt-4

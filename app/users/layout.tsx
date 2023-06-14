@@ -11,7 +11,7 @@ export default async function UsersLayout({ children }: Props) {
     const users = await getUsers()
     return (
         <Sidebar>
-            <div className="h-full">
+            <div className="h-full dark:bg-gray-900">
                 <UserList users={users} />
                 {children}
             </div>

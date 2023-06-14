@@ -22,6 +22,8 @@ export default function MobileFooter() {
             bg-white
             border-t
             lg:hidden
+            dark:bg-gray-900
+            dark:border-gray-700
         ">
             {routes.map(item =>
                 <MobileItem

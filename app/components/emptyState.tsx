@@ -10,6 +10,7 @@ export default function EmptyState() {
             justify-center
             items-center
             bg-gray-100
+            dark:bg-gray-950
         ">
             <div className="
                 text-center
@@ -22,6 +23,7 @@ export default function EmptyState() {
                     text-2xl
                     font-semibold
                     text-gray-900
+                    dark:text-gray-200
                 ">
                     Select a chat or start a new conversation
                 </h3>

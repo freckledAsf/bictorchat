@@ -23,15 +23,17 @@ export default function UserList({
             border-gray-200
             block
             w-full
-            left-'
+            left-0
+            dark:border-gray-700
         ">
             <div className="px-5">
                 <div className="flex-col">
                     <div className="
                         text-2xl
                         font-bold
-                        text-neutral-800
+                        text-gray-950
                         py-4
+                        dark:text-gray-200
                     ">
                         Usuarios
                     </div>

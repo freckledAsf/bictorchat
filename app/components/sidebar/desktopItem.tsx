@@ -35,8 +35,12 @@ export default function DesktopItem({
                     leading-6
                     font-semibold
                     text-gray-300
-                    hover:text-black
+                    hover:text-gray-950
                     hover:bg-gray-100
+                    dark:bg-gray-900
+                    dark:text-gray-400
+                    dark:hover:bg-gray-950
+                    dark:hover:text-gray-300
                 `,
                     active && 'bg-gray-100 text-black'
                 )}

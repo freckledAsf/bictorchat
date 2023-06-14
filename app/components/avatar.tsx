@@ -24,8 +24,8 @@ export default function Avatar({
             ">
                 <Image
                     fill
-                    src={`${user.image || 'https://avatar.vercel.sh/' + user.name}`}
-                    alt={`${user.name} avatar`}
+                    src={user?.image || `https://avatar.vercel.sh/${user?.name}`}
+                    alt={`${user?.name} avatar`}
                 />
             </div>
             <span className="
@@ -34,16 +34,15 @@ export default function Avatar({
                 rounded-full
                 bg-green-500
                 ring-2
-                ring-white
+                ring-gray-100
                 top-0
                 right-0
                 h-2
                 w-2
                 md:h-3
                 md:w-3
-            ">
-
-            </span>
+                dark:ring-gray-800
+            "/>
         </div>
     )
 }
