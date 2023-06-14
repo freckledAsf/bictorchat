@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import getCurrentUser from "@actions/getCurrentUser"
 import prisma from '@lib/prismadb'
 
-export default async function POST(req: Request) {
+export async function POST(req: Request) {
     try {
         const currentUser = await getCurrentUser()
         if (!currentUser?.id || !currentUser?.email) {
