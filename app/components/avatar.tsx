@@ -24,7 +24,7 @@ export default function Avatar({
             ">
                 <Image
                     fill
-                    src={`${user.image ?? 'https://avatar.vercel.sh/' + user.name}`}
+                    src={`${user.image || 'https://avatar.vercel.sh/' + user.name}`}
                     alt={`${user.name} avatar`}
                 />
             </div>
