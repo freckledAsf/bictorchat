@@ -8,7 +8,7 @@ import {
 } from 'react-icons/hi2'
 import { signOut } from "next-auth/react"
 
-const useRoutes = () => {
+export default function useRoutes() {
     const pathname = usePathname()
     const { conversationId } = useConversation()
 
@@ -34,5 +34,3 @@ const useRoutes = () => {
 
     return routes
 }
-
-export default useRoutes

@@ -25,6 +25,7 @@
       "@lib/*": ["./app/lib/*"],
       "@actions/*": ["./app/actions/*"],
       "@hooks/*": ["./app/hooks/*"],
+      "@types": ["./app/types/index.ts"],
       "@components/*": ["./app/components/*"],
     }
   },

@@ -36,7 +36,7 @@ export default function Input({
                     font-medium
                     leading-6
                     text-gray-950
-                    dark:text-gray-200
+                    dark:text-gray-400
                 "
             >
                 {label}

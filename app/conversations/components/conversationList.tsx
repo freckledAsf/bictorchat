@@ -2,14 +2,14 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Conversation } from "@prisma/client"
-import useConversation from "@/app/hooks/useConversation"
-import clsx from "clsx"
-import { MdOutlineGroupAdd } from 'react-icons/md'
+import useConversation from "@hooks/useConversation"
+import { FullConversationType } from "@types"
 import ConversationItem from "./conversationItem"
+import { MdOutlineGroupAdd } from 'react-icons/md'
+import clsx from "clsx"
 
 interface Props {
-    initialItems: Conversation[]
+    initialItems: FullConversationType[]
 }
 
 export default function ConversationList({

@@ -108,7 +108,7 @@ export default function AuthForm() {
                 {variant === 'register' && (
                     <Input
                         id="name"
-                        label="Name"
+                        label="Nombre"
                         register={register}
                         errors={errors}
                     />
@@ -123,7 +123,7 @@ export default function AuthForm() {
                 />
                 <Input
                     id="password"
-                    label="Password"
+                    label="Contraseña"
                     type="password"
                     register={register}
                     errors={errors}
@@ -133,7 +133,7 @@ export default function AuthForm() {
                     type="submit"
                     className="w-full"
                 >
-                    {variant === 'login' ? 'Sign in' : 'Register'}
+                    {variant === 'login' ? 'Inicia sesion' : 'Registrate'}
                 </Button>
             </form>
 

@@ -1,7 +1,7 @@
 import { useParams } from "next/navigation"
 import { useMemo } from "react"
 
-const useConversation = () => {
+export default function useConversation() {
     const params = useParams()
 
     const conversationId = useMemo(() => {
@@ -18,5 +18,3 @@ const useConversation = () => {
         conversationId
     }), [isOpen, conversationId])
 }
-
-export default useConversation

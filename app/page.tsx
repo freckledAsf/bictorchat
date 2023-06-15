@@ -15,24 +15,24 @@ export default function Home() {
       '
     >
       <div>
-        <Image
-          width={48}
-          height={48}
-          src='/logo.svg'
-          alt='logo'
-          priority
-          className='mx-auto'
-        />
+          <Image
+            width={64}
+            height={64}
+            src={'/icon.svg'}
+            alt='logo'
+            priority
+            className='mx-auto'
+          />
         <h2 className='
           mt-6
-          text-xl
+          text-3xl
           text-center
           font-bold
           tracking-tight
           text-gray-950
-          dark:text-gray-200
+          dark:text-gray-300
         '>
-          WE ARE LIVE BITCHEEES!!!
+          Inicia sesion en tu cuenta
         </h2>
       </div>
       <AuthForm />

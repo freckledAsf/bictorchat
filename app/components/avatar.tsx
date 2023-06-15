@@ -10,6 +10,7 @@ interface Props {
 export default function Avatar({
     user,
 }: Props) {
+    if (!user) return
     return (
         <div className="relative">
             <div className="
@@ -24,10 +25,11 @@ export default function Avatar({
             ">
                 <Image
                     fill
-                    src={user?.image || `https://avatar.vercel.sh/${user?.name}`}
-                    alt={`${user?.name} avatar`}
+                    src={user.image || `https://avatar.vercel.sh/${user.name}`}
+                    alt={`${user.name} avatar`}
                 />
             </div>
+            {/*
             <span className="
                 absolute
                 block
@@ -43,6 +45,7 @@ export default function Avatar({
                 md:w-3
                 dark:ring-gray-800
             "/>
+            */}
         </div>
     )
 }

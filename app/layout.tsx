@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'Bictor Chat',
   description: 'A messaging app built by Victor Tamayo',
+  icons: {
+    icon: 'icon.svg'
+  }
 }
 
 export default function RootLayout({
