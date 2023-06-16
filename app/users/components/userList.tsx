@@ -38,12 +38,14 @@ export default function UserList({
                         Usuarios
                     </div>
                 </div>
-                {users.map(item =>
-                    <UserItem
-                        key={item.id}
-                        user={item}
-                    />    
-                )}
+                <div className="space-y-2">
+                    {users.map(item =>
+                        <UserItem
+                            key={item.id}
+                            user={item}
+                        />
+                    )}
+                </div>
             </div>
         </aside>
     )

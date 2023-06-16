@@ -43,7 +43,7 @@ export default async function Conversation({
                 flex-col
             ">
                 <Header conversation={conversation} />
-                <Body initialMessages={messages} />
+                <Body initialMessages={messages} isGroup={conversation.isGroup || false} />
                 <Form />
             </div>
         </div>

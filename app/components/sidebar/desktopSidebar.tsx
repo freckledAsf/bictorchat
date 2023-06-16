@@ -57,6 +57,7 @@ export default function DesktopSidebar({
                             icon={item.icon}
                             active={item.active}
                             onClick={item.onClick}
+                            danger={item.danger}
                         />
                     )}
                 </ul>

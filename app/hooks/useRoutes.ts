@@ -27,6 +27,7 @@ export default function useRoutes() {
         {
             label: 'Logout',
             href: '#',
+            danger: true,
             onClick: () => signOut(),
             icon: HiArrowLeftOnRectangle
         }

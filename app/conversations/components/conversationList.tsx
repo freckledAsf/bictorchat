@@ -29,8 +29,10 @@ export default function ConversationList({
             overflow-y-auto
             border-r
             border-gray-200
+            invisible
+            lg:visible
         `,
-            isOpen ? 'hidden' : 'block w-full left-0'
+            //isOpen ? 'invisible' : 'block w-full left-0'
         )}>
             <div className="px-5">
                 <div className="
@@ -61,13 +63,15 @@ export default function ConversationList({
                         <MdOutlineGroupAdd size={20} />
                     </div>
                 </div>
-                {items.map(item =>
-                    <ConversationItem
-                        key={item.id}
-                        data={item}
-                        selected={conversationId === item.id}
-                    />    
-                )}
+                <div className="space-y-2">
+                    {items.map(item =>
+                        <ConversationItem
+                            key={item.id}
+                            data={item}
+                            selected={conversationId === item.id}
+                        />
+                    )}
+                </div>
             </div>
         </aside>
     )

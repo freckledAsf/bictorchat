@@ -35,13 +35,11 @@ export default function UserBox({
                 flex
                 items-center
                 space-x-3
-                bg-gray-200
                 p-3
                 rounded-lg
                 transition
                 cursor-pointer
                 hover:bg-gray-300
-                dark:bg-gray-800
                 dark:hover:bg-gray-950
             "
         >

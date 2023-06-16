@@ -7,11 +7,13 @@ import axios from "axios"
 import MessageBox from "./messageBox"
 
 interface Props {
-    initialMessages: FullMessageType[]
+    initialMessages: FullMessageType[],
+    isGroup: boolean,
 }
 
 export default function Body({
-    initialMessages
+    initialMessages,
+    isGroup,
 }: Props) {
     const [messages, setMessages] = useState(initialMessages)
     const bottomRef = useRef<HTMLDivElement>(null)
@@ -31,12 +33,13 @@ export default function Body({
                 <MessageBox
                     key={item.id}
                     isLast={i === messages.length - 1}
+                    isGroup={isGroup}
                     data={item}
                 />
             ))}
-            <div 
-                ref={bottomRef} 
-                className="pt-24" 
+            <div
+                ref={bottomRef}
+                className="pt-12"
             />
         </div>
     )

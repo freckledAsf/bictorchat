@@ -3,7 +3,6 @@
 import { useCallback, useMemo } from "react"
 import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
-import { Conversation, Message, User } from "@prisma/client"
 import { FullConversationType } from "@types"
 import format from "date-fns/format"
 import clsx from "clsx"
@@ -43,9 +42,9 @@ export default function ConversationItem({
     }, [lastMessage, userEmail])
 
     const lastMessageText = useMemo(() => {
-        if (lastMessage?.image) return 'Sent an image'
+        if (lastMessage?.image) return <i>Sent an image</i>
         if (lastMessage?.body) return lastMessage.body
-        return 'Started a conversation'
+        return <i>Started a conversation</i>
     }, [lastMessage])
 
     return (
@@ -57,7 +56,7 @@ export default function ConversationItem({
                 flex
                 items-center
                 space-x-3
-                hover:bg-neutral-300
+                hover:bg-gray-300
                 rounded-lg
                 transition
                 cursor-pointer

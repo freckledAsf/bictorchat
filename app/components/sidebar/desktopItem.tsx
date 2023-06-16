@@ -9,6 +9,7 @@ interface Props {
     href: string,
     onClick?: () => void,
     active?: boolean,
+    danger?: boolean,
 }
 
 export default function DesktopItem({
@@ -16,7 +17,8 @@ export default function DesktopItem({
     icon: Icon,
     href,
     onClick,
-    active
+    active,
+    danger
 }: Props) {
     const handleClick = () => {
         if (onClick) return onClick()
@@ -34,7 +36,6 @@ export default function DesktopItem({
                     text-sm
                     leading-6
                     font-semibold
-                    text-gray-300
                     hover:text-gray-950
                     hover:bg-gray-100
                     dark:bg-gray-900
@@ -42,7 +43,8 @@ export default function DesktopItem({
                     dark:hover:bg-gray-950
                     dark:hover:text-gray-300
                 `,
-                    active && 'bg-gray-100 text-black'
+                    active ? 'bg-gray-100 text-black' : 'text-gray-300',
+                    danger && 'hover:text-red-500 hover:bg-red-100',
                 )}
             >
                 <Icon className="h-6 w-6 shrink-0" />
