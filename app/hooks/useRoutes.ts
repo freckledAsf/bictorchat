@@ -4,7 +4,7 @@ import { useMemo } from "react"
 import { HiChat } from 'react-icons/hi'
 import {
     HiArrowLeftOnRectangle,
-    HiUsers
+    HiUsers,
 } from 'react-icons/hi2'
 import { signOut } from "next-auth/react"
 

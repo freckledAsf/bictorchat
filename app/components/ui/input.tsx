@@ -13,6 +13,7 @@ interface Props {
     type?: string,
     autofocus?: boolean,
     disabled?: boolean,
+    required?: boolean,
     register: UseFormRegister<FieldValues>,
     errors: FieldErrors,
 }
@@ -23,6 +24,7 @@ export default function Input({
     type,
     autofocus,
     disabled,
+    required,
     register,
     errors,
 }: Props) {
@@ -47,7 +49,7 @@ export default function Input({
                 autoFocus={autofocus}
                 autoComplete={id}
                 disabled={disabled}
-                {...register(id, { required: true })}
+                {...register(id, { required: required })}
                 className={clsx(`
                         mt-2
                         form-input

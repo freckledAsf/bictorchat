@@ -1,5 +1,6 @@
-import AuthContext from './context/authContext'
-import ToasterContext from './context/toasterContext'
+import AuthContext from '@context/authContext'
+import ToasterContext from '@context/toasterContext'
+import ActiveStatus from '@context/activeStatus'
 
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className={`h-full ${inter.className}`}>
         <AuthContext>
           <ToasterContext />
+          <ActiveStatus />
           {children}
         </AuthContext>
       </body>

@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { useCallback, useState } from "react"
 import { User } from "@prisma/client"
 import Avatar from "@components/avatar"
+import LoadingModal from "@/app/components/loadingModal"
 
 interface Props {
     user: User
@@ -27,45 +28,50 @@ export default function UserBox({
     }, [router, user])
 
     return (
-        <div
-            onClick={handleClick}
-            className="
-                w-full
-                relative
-                flex
-                items-center
-                space-x-3
-                p-3
-                rounded-lg
-                transition
-                cursor-pointer
-                hover:bg-gray-300
-                dark:hover:bg-gray-950
-            "
-        >
-            <Avatar user={user} />
-            <div className="
-                min-w-0
-                flex-1
-            ">
-                <div className="focus:outline-none">
-                    <div className="
-                        flex
-                        justify-between
-                        items-center
-                        mb-1
-                    ">
-                        <p className="
-                            text-sm
-                            font-medium
-                            text-gray-900
-                            dark:text-gray-300
+        <>
+            {isLoading && (
+                <LoadingModal />
+            )}
+            <div
+                onClick={handleClick}
+                className="
+                    w-full
+                    relative
+                    flex
+                    items-center
+                    space-x-3
+                    p-3
+                    rounded-lg
+                    transition
+                    cursor-pointer
+                    hover:bg-gray-100
+                    dark:hover:bg-gray-950
+                "
+            >
+                <Avatar user={user} />
+                <div className="
+                    min-w-0
+                    flex-1
+                ">
+                    <div className="focus:outline-none">
+                        <div className="
+                            flex
+                            justify-between
+                            items-center
+                            mb-1
                         ">
-                            {user.name}
-                        </p>
+                            <p className="
+                                text-sm
+                                font-medium
+                                text-gray-900
+                                dark:text-gray-300
+                            ">
+                                {user.name}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }

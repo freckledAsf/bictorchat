@@ -23,8 +23,9 @@
       "@/*": ["./*"],
       "@api/*": ["./app/api/*"],
       "@lib/*": ["./app/lib/*"],
-      "@actions/*": ["./app/actions/*"],
       "@hooks/*": ["./app/hooks/*"],
+      "@actions/*": ["./app/actions/*"],
+      "@context/*": ["./app/context/*"],
       "@types": ["./app/types/index.ts"],
       "@components/*": ["./app/components/*"],
     }

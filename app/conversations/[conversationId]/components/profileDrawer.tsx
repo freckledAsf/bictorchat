@@ -1,13 +1,13 @@
 'use client'
 
+import { Fragment, useMemo, useState } from 'react'
 import useOtherUser from "@hooks/useOtherUser"
 import { Conversation, User } from "@prisma/client"
 import { format } from "date-fns"
-import Modal from '@components/modal'
-import { Fragment, useMemo } from 'react'
+import ConfirmModal from "./confirmModal"
+import Avatar from '@/app/components/avatar'
 import { Transition, Dialog } from '@headlessui/react'
 import { IoClose, IoTrash } from 'react-icons/io5'
-import Avatar from '@/app/components/avatar'
 
 interface Props {
     data: Conversation & {
@@ -23,6 +23,7 @@ export default function ProfileDrawer({
     onClose,
 }: Props) {
     const otherUser = useOtherUser(data)
+    const [isConfirmOpen, setIsConfirmOpen] = useState(false)
     const joinedDate = useMemo(() => {
         return format(new Date(otherUser.createdAt), 'PP')
     }, [otherUser.createdAt])
@@ -35,11 +36,10 @@ export default function ProfileDrawer({
     }, [data])
     return (
         <>
-            <Modal
-                onClose={() => {}}
-            >
-
-            </Modal>
+            <ConfirmModal
+                isOpen={isConfirmOpen}
+                onClose={() => setIsConfirmOpen(false)}
+            />
             <Transition.Root show={isOpen} as={Fragment}>
                 <Dialog
                     as="div"
@@ -151,7 +151,10 @@ export default function ProfileDrawer({
                                                     items-center
                                                 '>
                                                     <div className='mb-2'>
-                                                        <Avatar user={otherUser} />
+                                                        <Avatar
+                                                            user={otherUser}
+                                                            big    
+                                                        />
                                                     </div>
                                                     <div>
                                                         {title}
@@ -168,31 +171,33 @@ export default function ProfileDrawer({
                                                         my-8
                                                     '>
                                                         <div
-                                                            onClick={() => { }}
+                                                            onClick={() => setIsConfirmOpen(true)}
                                                             className='
                                                                 flex
                                                                 flex-col
                                                                 gap-3
                                                                 items-center
                                                                 cursor-pointer
-                                                                hover:opacity-75
+                                                                group
+                                                                hover:text-red-500 
                                                             '
                                                         >
-                                                            <div className='
+                                                            <div
+                                                                className='
                                                                 w-10
                                                                 h-10
-                                                                bg-neutral-100
+                                                                bg-gray-100
                                                                 rounded-full
                                                                 flex
                                                                 items-center
                                                                 justify-center
+                                                                group-hover:bg-red-100
                                                             '>
                                                                 <IoTrash size={20} />
                                                             </div>
                                                             <div className='
                                                                 text-sm
-                                                                font-light
-                                                                text-neutral-600
+                                                                fon
                                                             '>
                                                                 Delete
                                                             </div>
@@ -211,6 +216,27 @@ export default function ProfileDrawer({
                                                             sm:space-6
                                                             sm:px-6
                                                         '>
+                                                            {data.isGroup && (
+                                                                <div>
+                                                                    <dt className='
+                                                                        text-sm
+                                                                        font-medium
+                                                                        text-gray-500
+                                                                        sm:w-40
+                                                                        sm:flex-shrink-0
+                                                                    '>
+                                                                        Emails
+                                                                    </dt>
+                                                                    <dd className='
+                                                                        mt-1
+                                                                        text-sm
+                                                                        text-gray-900
+                                                                        sm:col-span-2
+                                                                    '>
+                                                                        {data.users.map(item => item.email).join(', ')}
+                                                                    </dd>
+                                                                </div>
+                                                            )}
                                                             {!data.isGroup && (
                                                                 <div>
                                                                     <dt className='

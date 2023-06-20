@@ -34,13 +34,12 @@ export default function Button({
                 px-3
                 py-2
                 text-sm
-                font-semibold
                 focus-visible:ring-2
             `,
-                secondary ? 'text-gray-950' : 'text-gray-100 focus-visible:ring-gray-800 dark:text-gray-200 dark:focus-visible:ring-gray-400',
+                secondary ? 'text-gray-950 outline outline-1 outline-gray-200 transition hover:outline-gray-500' : 'text-gray-100 focus-visible:ring-gray-800 dark:text-gray-200 dark:focus-visible:ring-gray-400',
                 disabled && 'opacity-50 cursor-default',
-                danger && 'bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose-600',
-                !secondary && !danger && 'bg-emerald-500 hover:bg-emerald-600 focus-visible:outline-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-700',
+                danger && 'font-semibold text-gray-100 bg-rose-500 hover:bg-rose-600 focus-visible:outline-rose-600',
+                !secondary && !danger && 'font-semibold bg-emerald-500 hover:bg-emerald-600 focus-visible:outline-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-700',
                 className,
             )}
         >

@@ -41,6 +41,7 @@ export default function MessageInput({
                     w-full
                     rounded-full
                     focus:outline-none
+                    break-words
                 "
             />
         </div>

@@ -53,7 +53,7 @@ export default function Form() {
             <CldUploadButton
                 options={{ maxFiles: 1 }}
                 onUpload={handleUpload}
-                uploadPreset="pneqq6q4"
+                uploadPreset={"pneqq6q4"}
             >
                 <HiPhoto
                     size={30}

@@ -1,25 +1,47 @@
-import { FullMessageType } from "@/app/types"
+import { useMemo, useState } from "react"
 import { useSession } from "next-auth/react"
+import { FullMessageType } from "@/app/types"
 import Avatar from "@components/avatar"
 import clsx from "clsx"
 import { format } from "date-fns"
+import ImageModal from './imageModal'
 import Image from "next/image"
-import { useCallback, useEffect, useMemo } from "react"
 
 interface Props {
     isLast?: boolean,
     isGroup?: boolean,
-    data: FullMessageType
+    lastMessage: FullMessageType | null,
+    data: FullMessageType,
 }
 
 export default function MessageBox({
     isLast,
     isGroup,
+    lastMessage,
     data,
 }: Props) {
     const session = useSession()
+    const [isImageModalOpen, setIsImageModalOpen] = useState(false)
 
-    const isOwn = session?.data?.user?.email === data?.sender?.email
+    const isOwn = useMemo(() =>
+        session?.data?.user?.email === data?.sender?.email
+        , [session?.data?.user?.email, data?.sender?.email])
+
+    const isLastMessageOwn = useMemo(() =>
+        data?.sender?.email === lastMessage?.sender?.email
+        , [data?.sender?.email, lastMessage?.sender?.email])
+
+    const isLastMessageDiffTime = useMemo(() => {
+        if (!lastMessage?.createdAt || !data?.createdAt) return false
+        const date = new Date(lastMessage.createdAt)
+        date.setMinutes(date.getMinutes() + 5)
+        return date.getTime() < new Date(data.createdAt).getTime()
+    }, [lastMessage?.createdAt, data?.createdAt])
+
+    const isLastMessageDiffDay = useMemo(() => {
+        if (!lastMessage?.createdAt || !data?.createdAt) return true
+        return new Date(lastMessage.createdAt).getDate() !== new Date(data.createdAt).getDate()
+    }, [lastMessage?.createdAt, data?.createdAt])
 
     const seenList = (data?.seen || [])
         .filter(user => user.email !== data?.sender?.email)
@@ -38,79 +60,120 @@ export default function MessageBox({
 
 
     const wrapper = clsx(
-        "flex gap-3 p-4",
+        "flex gap-3 px-4",
         isOwn && "justify-end"
     )
 
-    const avatar = isOwn ? "order-2" : ""
-
     const body = clsx(
-        "flex flex-col gap-2",
+        "flex flex-col w-full",
         isOwn && "items-end"
     )
 
     const message = clsx(
-        "text-sm w-fit overflow-hidden",
-        isOwn ? "bg-emerald-400 text-white" : "bg-gray-100",
-        data.image ? "rounded-xl p-2" : "rounded-full py-2 px-3"
+        "text-sm overflow-hidden w-fit selection:bg-gray-700 selection:text-white",
+        isOwn ? "bg-emerald-400 text-white" : "bg-gray-200",
+        data.image ? "p-2 rounded-xl" : "rounded-3xl py-2 px-3 break-words max-w-[85%] sm:max-w-[75%]"
     )
 
     return (
-        <div className={wrapper}>
-            {isGroup && !isOwn && (
-                <div className={avatar}>
-                    <Avatar user={data.sender} />
+        <div className="
+            flex 
+            flex-col
+        ">
+            {isLastMessageDiffDay && (
+                <div className="
+                    bg-gray-100 
+                    text-sm 
+                    text-center 
+                    text-gray-700
+                    mx-auto 
+                    my-4
+                    px-4 
+                    py-1
+                    rounded-full
+                ">
+                    {format(new Date(data.createdAt), 'PP')}
                 </div>
             )}
-            <div className={body}>
-                <div className="flex items-center gap-1">
-                    <div className="text-sm text-gray-500">
-                        {`${isOwn ? 'Yo' : data.sender.name}`}
-                    </div>
-                    <div className="text-xs text-gray-400">
-                        {format(new Date(data.createdAt), 'p')}
-                    </div>
-                </div>
-                <div className={message}>
-                    {data.image ? (
-                        <Image
-                            alt="Image"
-                            height={288}
-                            width={288}
-                            src={data.image}
-                            className="
-                                object-cover
-                                cursor-pointer
-                                transition
-                                translate
-                            "
-                        />
-                    ) : isLink ? (
-                        <div>
-                            <a
-                                href={data.body!}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="
-                                    hover:underline
-                                "
-                            >
-                                {data.body}
-                            </a>
-                        </div>
-                    ) : (
-                        <div>{data.body}</div>
-                    )}
-                </div>
-                {isLast && isOwn && seenList.length > 0 && (
-                    <div className="
-                        text-xs
-                        font-light
-                        text-gray-500
-                    ">
-                        {`Seen by ${seenList}`}
+
+            <div className={wrapper}>
+                {(isGroup && !isOwn && !isLastMessageOwn) && (
+                    <div>
+                        <Avatar user={data.sender} />
                     </div>
                 )}
+                <div className={body}>
+                    {(!isLastMessageOwn || isLastMessageDiffDay || isLastMessageDiffTime) && (
+                        <div className="
+                            flex 
+                            items-center 
+                            gap-1 
+                            mb-2
+                        ">
+                            <div className="
+                                text-sm 
+                                text-gray-500
+                            ">
+                                {`${isOwn ? 'Yo' : data.sender.name}`}
+                            </div>
+                            <div className="
+                                text-xs 
+                                mt-[2px] 
+                                text-gray-400
+                            ">
+                                {format(new Date(data.createdAt), 'p')}
+                            </div>
+                        </div>
+                    )}
+                    <div className={message}>
+                        {data.image ? (
+                            <>
+                                <ImageModal
+                                    src={data.image}
+                                    isOpen={isImageModalOpen}
+                                    onClose={() => setIsImageModalOpen(false)}
+                                />
+                                <Image
+                                    height={288}
+                                    width={288}
+                                    src={data.image}
+                                    alt="Image"
+                                    onClick={() => setIsImageModalOpen(true)}
+                                    className="
+                                        object-cover
+                                        cursor-pointer
+                                        rounded-lg
+                                    "
+                                />
+                            </>
+                        ) : isLink ? (
+                            <div>
+                                <a
+                                    href={data.body!}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:underline"
+                                >
+                                    {data.body}
+                                </a>
+                            </div>
+                        ) : (
+                            <div>{data.body}</div>
+                        )}
+                    </div>
+                    {(isLast && isOwn && seenList.length > 0) && (
+                        <div className="
+                            text-xs
+                            font-light
+                            text-gray-500
+                            mt-1
+                            mr-1
+                            italic
+                        ">
+                            Seen {isGroup && `by ${seenList}`}
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     )

@@ -67,6 +67,7 @@ export default function AuthForm() {
                     return
                 }
                 toast.success('Logged in!')
+                router.refresh()
             })
             setIsLoading(false)
         }

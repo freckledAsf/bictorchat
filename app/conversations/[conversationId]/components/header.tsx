@@ -7,6 +7,7 @@ import Link from "next/link"
 import Avatar from "@components/avatar"
 import { HiChevronLeft, HiEllipsisHorizontal } from "react-icons/hi2"
 import ProfileDrawer from "./profileDrawer"
+import useActiveUserList from "@/app/hooks/useActiveUserList"
 
 interface Props {
     conversation: Conversation & {
@@ -19,13 +20,15 @@ export default function Header({
 }: Props) {
     const otherUser = useOtherUser(conversation)
     const [drawerOpen, setDrawerOpen] = useState(false)
+    const { members } = useActiveUserList()
+    const isActive = members.indexOf(otherUser?.email!) !== -1
     const statusText = useMemo(() => {
         if (conversation.isGroup) {
             return `${conversation.users.length} miembros`
         }
 
-        return 'Active'
-    }, [conversation])
+        return isActive ? 'Active' : 'Inactive'
+    }, [conversation, isActive])
     return (
         <>
             <ProfileDrawer
