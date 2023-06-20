@@ -4,7 +4,7 @@ import prisma from '@lib/prismadb'
 import { pusherServer } from "@lib/pusher"
 
 interface IParams {
-    conversationId: string,
+    conversationId?: string,
 }
 
 export async function DELETE(
