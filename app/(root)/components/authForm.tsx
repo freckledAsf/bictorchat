@@ -24,10 +24,10 @@ export default function AuthForm() {
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        if (session.status === 'authenticated') {
-            router.push('/users')
+        if (session?.status === 'authenticated') {
+            router.push('/conversations')
         }
-    }, [session.status, router])
+    }, [session?.status, router])
 
     const toggleVariant = useCallback(() => {
         setVariant(variant === 'login' ? 'register' : 'login')
