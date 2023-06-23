@@ -15,7 +15,7 @@ export default async function ConversationsLayout({
     const users = await getUsers()
     return (
         <Sidebar>
-            <div className="h-full">
+            <div className="h-full dark:bg-gray-900">
                 <ConversationList
                     users={users}
                     initialItems={conversations}

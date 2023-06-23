@@ -57,13 +57,14 @@ export default function ConversationItem({
                 flex
                 items-center
                 space-x-3
-                hover:bg-gray-100
                 rounded-lg
                 transition
                 cursor-pointer
                 p-3
+                hover:bg-gray-100
+                dark:hover:bg-gray-800
             `,
-                selected ? 'bg-neutral-100' : 'bg-white'
+                selected ? 'bg-gray-100 dark:bg-gray-800' : 'bg-transparent'
             )}
         >
             {data.isGroup ? (
@@ -85,14 +86,15 @@ export default function ConversationItem({
                             text-md
                             font-medium
                             text-gray-900
+                            dark:text-gray-300
                         ">
                             {data.name || otherUser.name}
                         </p>
                         {lastMessage?.createdAt && (
                             <p className="
                                 text-xs
-                                text-gray-400
                                 font-light
+                                text-gray-400
                             ">
                                 {format(new Date(lastMessage.createdAt), 'p')}
                             </p>
@@ -102,7 +104,7 @@ export default function ConversationItem({
                         truncate
                         text-sm
                     `,
-                        isSeen ? 'text-gray-500' : 'text-black font-medium'
+                        isSeen ? 'text-gray-500 dark:text-gray-400' : 'text-gray-950 font-medium dark:text-gray-300'
                     )}>
                         {lastMessageText}
                     </p>

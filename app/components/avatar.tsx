@@ -34,21 +34,17 @@ export default function Avatar({
                 />
             </div>
             {isActive && (
-                <span className="
+                <span className={clsx(`
                     absolute
                     block
                     rounded-full
                     bg-green-500
                     ring-2
                     ring-gray-100
-                    top-0
-                    right-0
-                    h-2
-                    w-2
-                    md:h-3
-                    md:w-3
                     dark:ring-gray-800
-                "/>
+                `,
+                    big ? 'h-5 w-5 top-1 right-1' : 'top-0 right-0 h-2 w-2 md:h-3 md:w-3'
+                )} />
             )}
         </div>
     )

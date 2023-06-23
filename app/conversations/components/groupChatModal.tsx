@@ -70,6 +70,7 @@ export default function GroupChatModal({
                             font-semibold
                             leading-7
                             text-gray-900
+                            dark:text-gray-100
                         ">
                             Create a group chat
                         </h2>
@@ -78,6 +79,7 @@ export default function GroupChatModal({
                             text-sm
                             leading-6
                             text-gray-600
+                            dark:text-gray-300
                         ">
                             Create a chat with more than 2 people
                         </p>
@@ -96,6 +98,7 @@ export default function GroupChatModal({
                                 errors={errors}
                             />
                             <Select
+                                id="members"
                                 label="Members"
                                 disabled={isLoading}
                                 options={users.map(item => ({

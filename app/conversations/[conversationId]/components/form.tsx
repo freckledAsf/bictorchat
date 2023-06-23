@@ -41,6 +41,7 @@ export default function Form() {
     }
     return (
         <div className="
+            relative
             p-4
             bg-white
             border-t
@@ -49,6 +50,8 @@ export default function Form() {
             gap-2
             lg:gap-4
             w-full
+            dark:bg-gray-900
+            dark:border-gray-900
         ">
             <CldUploadButton
                 options={{ maxFiles: 1 }}
@@ -57,7 +60,7 @@ export default function Form() {
             >
                 <HiPhoto
                     size={30}
-                    className="text-sky-500"
+                    className="text-gray-500 dark:text-gray-400"
                 />
             </CldUploadButton>
             <form
@@ -86,6 +89,8 @@ export default function Form() {
                         cursor-pointer
                         transition
                         hover:bg-sky-600
+                        dark:bg-sky-700
+                        dark:hover:bg-sky-800
                     "
                 >
                     <HiPaperAirplane

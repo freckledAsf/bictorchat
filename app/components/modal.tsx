@@ -26,10 +26,10 @@ export default function Modal({
             <Dialog
                 as="div"
                 onClose={onClose}
-                className='
+                className="
                     relative
                     z-50
-                '
+                "
             >
                 <Transition.Child
                     as={Fragment}
@@ -77,7 +77,7 @@ export default function Modal({
                                 transform
                                 overflow-hidden
                                 rounded-lg
-                                bg-white
+                                bg-gray-100
                                 px-4
                                 pb-4
                                 text-left
@@ -85,40 +85,38 @@ export default function Modal({
                                 transition-all
                                 sm:my-8
                                 sm:p-6
+                                dark:bg-gray-950
                             `,
                                 fit ? 'w-fit' : 'w-full max-w-lg'
                             )}>
                                 <div className="
-                                absolute
-                                right-0
-                                top-0
-                                hidden
-                                pr-4
-                                pt-4
-                                sm:block
-                                z-10
-                            ">
+                                    absolute
+                                    right-0
+                                    top-0
+                                    hidden
+                                    pr-4
+                                    pt-4
+                                    sm:block
+                                    z-10
+                                ">
                                     <button
                                         type="button"
                                         onClick={onClose}
                                         className="
-                                        rounded-md
-                                        bg-white
-                                        text-gray-400
-                                        hover:text-gray-500
-                                        focus:outline-none 
-                                        focus:ring-2
-                                        focus:ring-sky-500
-                                        focus:ring-offset-2
-                                    "
+                                            rounded-md
+                                            bg-transparent
+                                            text-gray-400
+                                            hover:text-gray-500
+                                            focus:outline-none 
+                                            focus:ring-2
+                                            focus:ring-sky-500
+                                        "
                                     >
                                         <span className="sr-only">Close Panel</span>
-                                        <IoClose
-                                            className="
+                                        <IoClose className="
                                             h-6
                                             w-6
-                                        "
-                                        />
+                                        "/>
                                     </button>
                                 </div>
                                 {children}

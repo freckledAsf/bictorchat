@@ -28,7 +28,7 @@ export default function Body({
 
     useEffect(() => {
         pusherClient.subscribe(conversationId)
-        bottomRef?.current?.scrollIntoView()
+        bottomRef.current?.scrollIntoView()
 
         const newHandler = (message: FullMessageType) => {
             axios.post(`/api/conversations/${conversationId}/seen`)
@@ -38,7 +38,7 @@ export default function Body({
                 }
                 return [...current, message]
             })
-            bottomRef?.current?.scrollIntoView()
+            bottomRef.current?.scrollIntoView()
         }
 
         const updateHandler = (message: FullMessageType) => {
@@ -64,7 +64,24 @@ export default function Body({
             flex-1
             overflow-y-auto
             space-y-2
+            bg-[#E2DAD6]
+            scrollbar-thin
+            scrollbar-track-transparent
+            scrollbar-thumb-stone-400
+            dark:bg-gray-950
+            dark:scrollbar-thumb-gray-800
         ">
+            <div className="
+                z-0
+                fixed
+                h-full
+                w-full
+                opacity-5
+                bg-[url('/bg.png')]
+                invert
+                dark:opacity-10
+                dark:invert-0
+            "/>
             {messages.map((item, i) => (
                 <MessageBox
                     key={item.id}

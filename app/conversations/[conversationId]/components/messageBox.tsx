@@ -71,26 +71,30 @@ export default function MessageBox({
 
     const message = clsx(
         "text-sm overflow-hidden w-fit selection:bg-gray-700 selection:text-white",
-        isOwn ? "bg-emerald-400 text-white" : "bg-gray-200",
+        isOwn ? "bg-emerald-500 text-white dark:bg-emerald-600 dark:text-gray-200" : "bg-white dark:bg-gray-800 dark:text-gray-300",
         data.image ? "p-2 rounded-xl" : "rounded-3xl py-2 px-3 break-words max-w-[85%] sm:max-w-[75%]"
     )
 
     return (
         <div className="
+            relative
             flex 
             flex-col
+            z-10
         ">
             {isLastMessageDiffDay && (
                 <div className="
-                    bg-gray-100 
+                    bg-gray-200
                     text-sm 
                     text-center 
                     text-gray-700
-                    mx-auto 
+                    mx-auto
                     my-4
                     px-4 
                     py-1
                     rounded-full
+                    dark:bg-gray-900
+                    dark:text-gray-500
                 ">
                     {format(new Date(data.createdAt), 'PP')}
                 </div>
@@ -107,19 +111,21 @@ export default function MessageBox({
                         <div className="
                             flex 
                             items-center 
-                            gap-1 
+                            gap-1
                             mb-2
                         ">
                             <div className="
                                 text-sm 
-                                text-gray-500
+                                text-gray-600
+                                dark:text-gray-400
                             ">
                                 {`${isOwn ? 'Yo' : data.sender.name}`}
                             </div>
                             <div className="
                                 text-xs 
-                                mt-[2px] 
-                                text-gray-400
+                                mt-[2px]
+                                text-gray-500
+                                dark:text-gray-500
                             ">
                                 {format(new Date(data.createdAt), 'p')}
                             </div>

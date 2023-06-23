@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import AuthForm from './components/authForm'
 
-export default function Home() {
+export default function Auth() {
   return (
     <main className='
         h-full

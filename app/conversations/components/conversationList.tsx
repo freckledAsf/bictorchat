@@ -10,8 +10,7 @@ import { User } from "@prisma/client"
 import { FullConversationType } from "@types"
 import GroupChatModal from './groupChatModal'
 import ConversationItem from "./conversationItem"
-import { MdOutlineGroupAdd } from 'react-icons/md'
-import clsx from "clsx"
+import { MdGroupAdd } from 'react-icons/md'
 
 interface Props {
     users: User[],
@@ -26,7 +25,7 @@ export default function ConversationList({
     const [isGroupChatModalOpen, setIsGroupChatModalOpen] = useState(false)
     const router = useRouter()
     const session = useSession()
-    const { conversationId, isOpen } = useConversation()
+    const { conversationId } = useConversation()
     const pusherKey = useMemo(() => {
         return session?.data?.user?.email
     }, [session?.data?.user?.email])
@@ -85,7 +84,7 @@ export default function ConversationList({
                 isOpen={isGroupChatModalOpen}
                 onClose={() => setIsGroupChatModalOpen(false)}
             />
-            <aside className={clsx(`
+            <aside className="
                 fixed
                 inset-y-0
                 pb-20
@@ -97,9 +96,8 @@ export default function ConversationList({
                 border-gray-200
                 invisible
                 lg:visible
-            `,
-                //isOpen ? 'invisible' : 'block w-full left-0'
-            )}>
+                dark:border-gray-700
+            ">
                 <div className="px-5">
                     <div className="
                         flex
@@ -110,7 +108,8 @@ export default function ConversationList({
                         <div className="
                             text-2xl
                             font-bold
-                            text-neutral-800
+                            text-gray-950
+                            dark:text-gray-200
                         ">
                             Mensajes
                         </div>
@@ -124,9 +123,14 @@ export default function ConversationList({
                                 cursor-pointer
                                 hover:opacity-75
                                 transition
+                                dark:bg-gray-900
+                                dark:text-gray-400
+                                dark:hover:bg-gray-950
+                                dark:hover:opacity-100
+                                dark:hover:text-gray-300
                             "
                         >
-                            <MdOutlineGroupAdd size={20} />
+                            <MdGroupAdd size={20} />
                         </div>
                     </div>
                     <div className="space-y-2">

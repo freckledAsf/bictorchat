@@ -37,49 +37,53 @@ export default function Header({
                 onClose={() => setDrawerOpen(false)}
             />
             <div className="
-            bg-white
-            w-full
-            flex
-            border-b
-            sm:px-4
-            py-3
-            px-4
-            lg:px-6
-            justify-between
-            items-center
-            shadow-sm
-        ">
-                <div className="
+                w-full
                 flex
-                gap-3
+                border-b
+                sm:px-4
+                py-3
+                px-4
+                lg:px-6
+                justify-between
                 items-center
+                shadow-sm
+                dark:bg-gray-900
+                dark:border-gray-900
             ">
+                <div className="
+                    flex
+                    gap-3
+                    items-center
+                ">
                     <Link
                         href="/conversations"
                         className="
-                        lg:hidden
-                        block
-                        text-sky-500
-                        hover:text-sky-600
-                        transition
-                        cursor-pointer
-                    "
+                            lg:hidden
+                            block
+                            text-sky-500
+                            hover:text-sky-600
+                            transition
+                            cursor-pointer
+                        "
                     >
                         <HiChevronLeft size={32} />
                     </Link>
                     <Avatar user={otherUser} />
                     <div className="
-                    flex
-                    flex-col
-                ">
+                        flex
+                        flex-col
+                        text-gray-950
+                        dark:text-gray-300
+                    ">
                         <div>
                             {conversation.name || otherUser.name}
                         </div>
                         <div className="
-                        text-sm
-                        font-light
-                        text-neutral-500
-                    ">
+                            text-sm
+                            font-light
+                            text-gray-500
+                            dark:text-gray-400
+                        ">
                             {statusText}
                         </div>
                     </div>
@@ -88,11 +92,11 @@ export default function Header({
                     size={32}
                     onClick={() => setDrawerOpen(true)}
                     className="
-                    text-sky-500
-                    cursor-pointer
-                    hover:text-sky-600
-                    transition
-                "
+                        text-sky-500
+                        cursor-pointer
+                        hover:text-sky-600
+                        transition
+                    "
                 />
             </div>
         </>

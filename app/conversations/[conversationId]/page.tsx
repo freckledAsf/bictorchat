@@ -20,7 +20,8 @@ export default async function Conversation({
     if (!conversation) {
         return (
             <div className="
-                lg:pl-80 h-full
+                lg:pl-80
+                h-full
             ">
                 <div className="
                     h-full

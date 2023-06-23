@@ -33,15 +33,18 @@ export default function MessageInput({
                 autoComplete={id}
                 {...register(id, { required })}
                 className="
-                    text-black
+                    text-gray-950
                     font-light
                     py-2
                     px-4
-                    bg-neutral-100
+                    bg-gray-100
                     w-full
                     rounded-full
                     focus:outline-none
                     break-words
+                    dark:bg-gray-900
+                    dark:text-gray-200
+                    dark:placeholder:text-gray-400
                 "
             />
         </div>

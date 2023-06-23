@@ -59,6 +59,7 @@ export default function AuthForm() {
                 .then(callback => {
                     if (callback?.error) {
                         toast.error('Invalid credentials')
+                        return
                     }
                     if (callback?.ok) {
                         toast.success('Logged in!')
@@ -73,15 +74,17 @@ export default function AuthForm() {
             signIn('credentials', {
                 ...data,
                 redirect: false
-            }).then(callback => {
-                if (callback?.error) {
-                    toast.error('Invalid credentials')
-                }
-                if (callback?.ok) {
-                    toast.success('Logged in!')
-                    router.push('/conversations')
-                }
             })
+                .then(callback => {
+                    if (callback?.error) {
+                        toast.error('Invalid credentials')
+                        return
+                    }
+                    if (callback?.ok) {
+                        toast.success('Logged in!')
+                        router.push('/conversations')
+                    }
+                })
             setIsLoading(false)
         }
     }
@@ -92,9 +95,7 @@ export default function AuthForm() {
         signIn(action, { redirect: false })
             .then((callback) => {
                 if (callback?.error) {
-                    toast.error('Invalid credentials', {
-                        className: 'dark:bg-gray-900'
-                    })
+                    toast.error('Invalid credentials')
                     return
                 }
                 if (callback?.ok) {
@@ -107,7 +108,7 @@ export default function AuthForm() {
 
     return (
         <div className="
-            bg-white
+            bg-gray-100
             rounded-md
             py-8
             px-6

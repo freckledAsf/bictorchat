@@ -1,6 +1,7 @@
 export default function EmptyState() {
     return (
         <div className="
+            relative    
             px-4
             py-10
             sm:px-6
@@ -9,9 +10,19 @@ export default function EmptyState() {
             flex
             justify-center
             items-center
-            bg-gray-100
+            bg-[#E2DAD6]
             dark:bg-gray-950
         ">
+            <div className="
+                z-0
+                inset-0
+                absolute
+                opacity-5
+                bg-[url('/bg.png')]
+                invert
+                dark:opacity-10
+                dark:invert-0
+            "/>
             <div className="
                 text-center
                 items-center

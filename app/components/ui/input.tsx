@@ -63,7 +63,6 @@ export default function Input({
                         ring-1
                         ring-inset
                         ring-gray-300
-                        placeholder:text-gray-900
                         focus:ring-2
                         focus:ring-sky-600
                         dark:text-gray-200
