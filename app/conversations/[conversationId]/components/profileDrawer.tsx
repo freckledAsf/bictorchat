@@ -102,6 +102,7 @@ export default function ProfileDrawer({
                                             bg-white
                                             py-6
                                             shadow-xl
+                                            dark:bg-gray-900
                                         '>
                                             <div className='
                                                 px-4
@@ -123,13 +124,11 @@ export default function ProfileDrawer({
                                                             onClick={onClose}
                                                             className='
                                                                 rounded-md
-                                                                bg-white
                                                                 text-gray-400
                                                                 hover:text-gray-500
                                                                 focus:outline-none
                                                                 focus:ring-2
                                                                 focus:ring-sky-500
-                                                                focus:ring-offset-2
                                                             '
                                                         >
                                                             <span className='sr-only'>Close panel</span>
@@ -153,15 +152,16 @@ export default function ProfileDrawer({
                                                     <div className='mb-2'>
                                                         <Avatar
                                                             user={otherUser}
-                                                            big    
+                                                            big
                                                         />
                                                     </div>
-                                                    <div>
+                                                    <div className='dark:text-gray-200'>
                                                         {title}
                                                     </div>
                                                     <div className='
                                                         text-sm
                                                         text-gray-500
+                                                        dark:text-gray-400
                                                     '>
                                                         {statusText}
                                                     </div>
@@ -179,7 +179,9 @@ export default function ProfileDrawer({
                                                                 items-center
                                                                 cursor-pointer
                                                                 group
-                                                                hover:text-red-500 
+                                                                hover:text-red-500
+                                                                dark:text-gray-400
+                                                                dark:hover:text-red-300
                                                             '
                                                         >
                                                             <div
@@ -192,13 +194,12 @@ export default function ProfileDrawer({
                                                                 items-center
                                                                 justify-center
                                                                 group-hover:bg-red-100
+                                                                dark:bg-gray-950
+                                                                dark:group-hover:bg-red-950
                                                             '>
                                                                 <IoTrash size={20} />
                                                             </div>
-                                                            <div className='
-                                                                text-sm
-                                                                fon
-                                                            '>
+                                                            <div className='text-sm'>
                                                                 Delete
                                                             </div>
                                                         </div>
@@ -232,6 +233,7 @@ export default function ProfileDrawer({
                                                                         text-sm
                                                                         text-gray-900
                                                                         sm:col-span-2
+                                                                        dark:text-gray-400
                                                                     '>
                                                                         {data.users.map(item => item.email).join(', ')}
                                                                     </dd>
@@ -253,37 +255,38 @@ export default function ProfileDrawer({
                                                                         text-sm
                                                                         text-gray-900
                                                                         sm:col-span-2
+                                                                        dark:text-gray-400
                                                                     '>
                                                                         {otherUser.email}
                                                                     </dd>
                                                                 </div>
                                                             )}
-                                                            {!data.isGroup && (
-                                                                <>
-                                                                    <hr />
-                                                                    <div>
-                                                                        <dt className='
-                                                                            text-sm
-                                                                            font-medium
-                                                                            text-gray-500
-                                                                            sm:w-40
-                                                                            sm:flex-shrink-0
-                                                                        '>
-                                                                            Joined
-                                                                        </dt>
-                                                                        <dd className='
-                                                                            mt-1
-                                                                            text-sm
-                                                                            text-gray-900
-                                                                            sm:col-span-2
-                                                                        '>
-                                                                            <time dateTime={joinedDate}>
-                                                                                {joinedDate}
-                                                                            </time>
-                                                                        </dd>
-                                                                    </div>
-                                                                </>
-                                                            )}
+                                                            <hr className='
+                                                                border-gray-300
+                                                                dark:border-gray-600
+                                                            ' />
+                                                            <div>
+                                                                <dt className='
+                                                                    text-sm
+                                                                    font-medium
+                                                                    text-gray-500
+                                                                    sm:w-40
+                                                                    sm:flex-shrink-0
+                                                                '>
+                                                                    Joined
+                                                                </dt>
+                                                                <dd className='
+                                                                    mt-1
+                                                                    text-sm
+                                                                    text-gray-900
+                                                                    sm:col-span-2
+                                                                    dark:text-gray-400
+                                                                '>
+                                                                    <time dateTime={joinedDate}>
+                                                                        {joinedDate}
+                                                                    </time>
+                                                                </dd>
+                                                            </div>
                                                         </dl>
                                                     </div>
                                                 </div>

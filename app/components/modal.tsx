@@ -44,7 +44,7 @@ export default function Modal({
                         fixed
                         inset-0
                         bg-gray-600
-                        bg-opacity-75
+                        bg-opacity-60
                         transition-opacity
                     "/>
                 </Transition.Child>

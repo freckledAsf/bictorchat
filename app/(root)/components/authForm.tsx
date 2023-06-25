@@ -108,7 +108,7 @@ export default function AuthForm() {
 
     return (
         <div className="
-            bg-gray-100
+            bg-white
             rounded-md
             py-8
             px-6

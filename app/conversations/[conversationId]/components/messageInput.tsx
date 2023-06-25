@@ -42,7 +42,7 @@ export default function MessageInput({
                     rounded-full
                     focus:outline-none
                     break-words
-                    dark:bg-gray-900
+                    dark:bg-gray-800
                     dark:text-gray-200
                     dark:placeholder:text-gray-400
                 "

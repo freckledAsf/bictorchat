@@ -75,6 +75,7 @@ export default function SettingsModal({
                             font-sembiold
                             leading-7
                             text-gray-900
+                            dark:text-gray-100
                         ">
                             Profile
                         </h2>
@@ -83,6 +84,7 @@ export default function SettingsModal({
                             text-sm
                             leading-6
                             text-gray-600
+                            dark:text-gray-300
                         ">
                             Edit your information
                         </p>
